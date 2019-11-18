@@ -1,0 +1,232 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(3rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-3rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+.btn {
+  /* this link is a pseudo element, is a state of the btn */
+  /* active state is when we click on link */
+  /* this is for that cool btn white effect */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    /* transition always has to be on intial state */
+    transition: all 0.2s;
+    position: relative; }
+  .btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /* when we hover apply these rules to pseudo element after */ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* opacity 0 is the trick for this cool effect */
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-0.1rem);
+    /* smaller shadow on active state to look that is closer to page */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+  .btn::after {
+    content: "";
+    /* inline block because the btn is also inline block */
+    display: inline-block;
+    /* this is treated like a btn child so 100% si 100% from the btn's height and width */
+    height: 100%;
+    width: 100%;
+    border-radius: 104rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* transition always has to be on intial state */
+    transition: all 0.2s; }
+  .btn--white::after {
+    background-color: #fff; }
+  .btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .row [class^="col-"] {
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc( 2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc( 2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc( 3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+/* Basic Reset - normalize css - cross browser reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* border and padding are no more added */
+  /* we inherit the box-sizig for entire page from body */
+  box-sizing: inherit; }
+
+html {
+  /* Divide what we want by 10px to be the root measure, because irem = 10px, 
+  so 10 diveide to the default browser, 16. So 10/16 = 0,625 * 100 = 62.5 = 1rem
+      So we used % to not overwrite the browser setting, because the user 
+      can modify it, increase, fot size for browser
+      0.625 x 16px = 10px
+      If the user changes to 20px will have
+      0.625 x 20px = 12.5px
+  */
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box;
+  /*  use here font to inherit it down, this font-family is the parent for all childs */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  /* 1.7 bigger then the predifined one */
+  line-height: 1.7;
+  color: #777;
+  /***** padding for entire web page ******/
+  padding: 3rem; }
+
+.grid-test {
+  width: 100%; }
+
+.header {
+  height: 95vh;
+  /* we want the gradient to stay on top so we put it first */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url(../img/hero.jpg);
+  /* whatever the with is fith the element in the box */
+  background-size: cover;
+  background-position: top;
+  /* specify a polygon that starts from top left and goes to right, around */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative; }
+  .header__logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px; }
+  .header__logo {
+    /* width will be scaled automatically */
+    height: 35px; }
+  .header__text-box {
+    /* center this box with all text */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* center it with translate */
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* to fix that little shaking for text when animation finishes  */
+  backface-visibility: hidden;
+  /* push down the white button */
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    /* display block to have each one on a row */
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation: moveInLeft 2s ease-out;
+    /* animation-duration: 2s;
+    animation-timing-function: ease-out; 
+    */ }
+  .heading-primary--sub {
+    /* display block to have each one on a row */
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.76rem;
+    /* animation-name: moveInRight;
+    animation-duration: 2s; 
+    animation-delay: 1s;
+    */
+    animation: moveInRight 2s ease-out; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }
+  .section-about .heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s; }
+    .section-about .heading-secondary:hover {
+      transform: skewY(2deg) skewX(15deg) scale(1.1);
+      text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .section-about .heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase; }
+  .section-about .paragraph {
+    font-size: 1.6rem; }
+    .section-about .paragraph:not(:last-child) {
+      margin-bottom: 3rem; }

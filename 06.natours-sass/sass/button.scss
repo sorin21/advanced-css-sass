@@ -1,0 +1,64 @@
+.btn {
+  /* this link is a pseudo element, is a state of the btn */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    /* transition always has to be on intial state */
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    /* when we hover apply these rules to pseudo element after */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* opacity 0 is the trick for this cool effect */
+      opacity: 0;
+    }
+  }
+
+  /* active state is when we click on link */
+  &:active {
+    transform: translateY(-0.1rem);
+    /* smaller shadow on active state to look that is closer to page */
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+  }
+
+  /* this is for that cool btn white effect */
+  &::after {
+    content: "";
+    /* inline block because the btn is also inline block */
+    display: inline-block;
+    /* this is treated like a btn child so 100% si 100% from the btn's height and width */
+    height: 100%;
+    width: 100%;
+    border-radius: 104rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* transition always has to be on intial state */
+    transition: all 0.2s;
+  }
+
+  &--white::after {
+    background-color: $color-white;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+}

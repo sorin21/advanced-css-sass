@@ -1,0 +1,57 @@
+***************** SASS and NPM *****************
+1. Mixin
+
+  Declarin a mixin:
+    @mixin clearfix {
+      display: table
+    }
+
+  How to use it: 
+    nav {
+      margin: 30px
+      @include clearfix
+    }
+
+  Declaring an argument to mixin:
+    @mixin style-text($color) { 
+      color: $color
+    }
+
+  How to use it:
+    @include style-text($light-blue)
+
+2. Functions
+
+  Declaring a function:
+    @function divide($a, $b) {
+      return $a / $b
+    }
+
+  Using a function:
+    divide(60, 2) * 1px
+
+3. Extends(placeholder)
+    
+  Declaring a placeholder:
+    %btn-placeholder {
+      padding: 10px;
+      display: inline-block;
+      @include style-text($light-blue);
+    }
+
+  Using an extend placeholder:
+    @extend %btn-placeholder
+
+  In extend, diff then a mixin, is that where we put @extend we copy that in the root where we declaring the extend %btn-placeholder.
+  We use extend only if the rules, where we use extend, are related. Otherwise we use mixin
+
+4. Create a sass folder and inside create a main.scss file
+  - select everything from style.css, cut it, and paste it inside main.scss
+  - add $color-primary light and dark
+
+5. Compile SASS 
+  Add this line package.json to compile SASS: input file main.scss and output file style.css
+
+  "sass": "node-sass sass/main.scss css/style.css -w"
+
+  -w is for watch file

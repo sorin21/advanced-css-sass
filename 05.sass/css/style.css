@@ -1,0 +1,141 @@
+/* Basic Reset - normalize css - cross browser reset */
+* {
+  margin: 0;
+  padding: 0;
+  /* border and padding are no more added */
+  box-sizing: border-box; }
+
+body {
+  /* set it to Lato and if not available set it to sans-serif */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  /* padding to entire body */
+  padding: 20px; }
+
+.header {
+  height: 95vh;
+  /* we want the gradient to stay on top so we put it first */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url(../img/hero.jpg);
+  /* whatever the with is fith the element in the box */
+  background-size: cover;
+  background-position: top;
+  /* specify a polygon that starts from top left and goes to right, around */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative; }
+  .header__logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px; }
+  .header__logo {
+    /* width will be scaled automatically */
+    height: 35px; }
+  .header__text-box {
+    /* center this box with all text */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* center it with translate */
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.header .heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 60px; }
+  .header .heading-primary--main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    /* animation-delay: 2s; */ }
+  .header .heading-primary--sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+    animation: moveInRight 2s ease-out;
+    /* to fix that little shaking for text when animation finishes  */
+    backface-visibility: hidden; }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px); }
+  80% {
+    transform: translateX(30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); }
+  80% {
+    transform: translateX(-30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+.btn {
+  /* this link is a pseudo element, is a state of the btn */
+  /* active state is when we click on link */
+  /* this is for that cool btn white effect */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    /* transition always has to be on intial state */
+    transition: all 0.2s;
+    position: relative; }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* when we hover apply these rules to pseudo element after */ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* opacity 0 is the trick for this cool effect */
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    /* smaller shadow on active state to look that is closer to page */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+  .btn::after {
+    content: "";
+    /* inline block because the btn is also inline block */
+    display: inline-block;
+    /* this is treated like a btn child so 100% si 100% from the btn's height and width */
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* transition always has to be on intial state */
+    transition: all 0.2s; }
+  .btn--white::after {
+    background-color: #fff; }
+  .btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; }

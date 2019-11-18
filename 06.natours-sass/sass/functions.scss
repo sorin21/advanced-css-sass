@@ -1,0 +1,6 @@
+@function colWidth($i, $n) {
+  @return calc(
+    (100% - (#{$n} - 1) * #{$gutter-horizontal}) * #{$i} / #{$n} + (#{$i} - 1) *
+      #{$gutter-horizontal}
+  );
+}

@@ -1,0 +1,156 @@
+/* Basic Reset - normalize css - cross browser reset */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* border and padding are no more added */
+  /* we inherit the box-sizig for entire page from body */
+  box-sizing: inherit;
+}
+
+html {
+  /* Divide what we want by 10px to be the root measure, because irem = 10px, 
+  so 10 diveide to the default browser, 16. So 10/16 = 0,625 * 100 = 62.5 = 1rem
+      So we used % to not overwrite the browser setting, because the user 
+      can modify it, increase, fot size for browser
+      0.625 x 16px = 10px
+      If the user changes to 20px will have
+      0.625 x 20px = 12.5px
+  */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  /*  use here font to inherit it down, this font-family is the parent for all childs */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  /* 1.7 bigger then the predifined one */
+  line-height: 1.7;
+  color: $color-grey-dark;
+  /***** padding for entire web page ******/
+  padding: 3rem;
+}
+
+.grid-test {
+  width: 100%;
+}
+
+.header {
+  height: 95vh;
+  /* we want the gradient to stay on top so we put it first */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.801),
+      rgba($color-primary-dark, 0.801)
+    ),
+    url(../img/hero.jpg);
+  /* whatever the with is fith the element in the box */
+  background-size: cover;
+  background-position: top;
+  /* specify a polygon that starts from top left and goes to right, around */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+
+  &__logo {
+    /* width will be scaled automatically */
+    height: 35px;
+  }
+
+  &__text-box {
+    /* center this box with all text */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* center it with translate */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  /* to fix that little shaking for text when animation finishes  */
+  backface-visibility: hidden;
+  /* push down the white button */
+  margin-bottom: 6rem;
+
+  &--main {
+    /* display block to have each one on a row */
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation: moveInLeft 2s ease-out;
+    /* animation-duration: 2s;
+    animation-timing-function: ease-out; 
+    */
+  }
+
+  &--sub {
+    /* display block to have each one on a row */
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.76rem;
+    /* animation-name: moveInRight;
+    animation-duration: 2s; 
+    animation-delay: 1s;
+    */
+    animation: moveInRight 2s ease-out;
+  }
+}
+
+.section-about {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0;
+  margin-top: -20vh;
+
+  .heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(
+      to right,
+      $color-primary-light,
+      $color-primary-dark
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: skewY(2deg) skewX(15deg) scale(1.1);
+      text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+    }
+  }
+
+  .heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .paragraph {
+    font-size: 1.6rem;
+
+    // margin to botttom except last child
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+}
