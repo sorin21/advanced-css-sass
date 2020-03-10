@@ -1,0 +1,4 @@
+1. Start program: open cmder in project and run:
+  npm i
+  npm install -g live-server
+  npm run start
